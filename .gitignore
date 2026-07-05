@@ -1,0 +1,53 @@
+# --- Secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- Python ---
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Generated audio / pipeline output ---
+output/clips/
+output/*.mp3
+output/*.wav
+# Keep output/lines.json if you hand-curate it; ignore if LLM-generated only:
+# output/lines.json
+
+# --- ML / local model caches (if ever stored in-repo) ---
+models/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+
+# --- OS / editor ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- Cursor (optional — ignore local IDE state) ---
+.cursor/
+
+# --- Plan ---
+PLAN.md
