@@ -1,0 +1,14 @@
+male:
+  id: M
+  maya_prompt: >
+    Male, late 20s, warm Indian accent, naturally curious travel buddy,
+    medium energy, relaxed slow pacing, conversational, speaks like he is
+    experiencing the place for the first time, not a radio host or presenter
+
+female:
+  id: F
+  maya_prompt: >
+    Female, early 30s, warm Indian accent, calm storytelling friend,
+    slight smile in voice, emotionally expressive but not theatrical,
+    slower pacing than conversational norm, like sharing something she
+    just discovered, not a tour guide or documentary narrator
