@@ -1,0 +1,18 @@
+[
+    {
+      "index": 1,
+      "speaker": "M",
+      "text": "Wow, this place looks even better than I imagined.",
+      "emotion": "curious",
+      "pause_before_ms": 0,
+      "pause_after_ms": 450
+    },
+    {
+      "index": 2,
+      "speaker": "F",
+      "text": "I know, right? Wait until you see the courtyard.",
+      "emotion": "playful",
+      "pause_before_ms": 0,
+      "pause_after_ms": 450
+    }
+  ]

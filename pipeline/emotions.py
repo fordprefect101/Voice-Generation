@@ -1,22 +1,19 @@
 from __future__ import annotations
 
-EMOTION_TAGS: dict[str, str | None] = {
-    "neutral": None,
-    "curious": "<curious>",
-    "playful": "<chuckle>",
-    "excited": "<excited>",
-    "warm": None,  # voice description carries warmth; avoid extra tag on closes
+EMOTION_INSTRUCT: dict[str, str] = {
+    "neutral": "neutral, calm delivery",
+    "curious": "curious, lightly questioning, discovery tone",
+    "playful": "playful, amused, slight smile in the voice",
+    "excited": "excited but not shouting, higher energy",
+    "warm": "warm, reflective, soft smile",
 }
 
-def apply_emotion_tag(text: str, emotion: str) -> str:
-    tag = EMOTION_TAGS.get(emotion)
-    if not tag:
-        return text
-    return f"{tag} {text}"
+def build_instruct(base_voice: str, emotion: str) -> str:
+    style = EMOTION_INSTRUCT.get(emotion, EMOTION_INSTRUCT["neutral"])
+    return f"{base_voice.rstrip()}, {style}"
 
 def default_pause_after(text: str, emotion: str) -> int:
     stripped = text.rstrip()
-
     if stripped.endswith("?"):
         return 550
     if emotion == "playful" and len(stripped) < 100:

@@ -1,14 +1,11 @@
 male:
   id: M
-  maya_prompt: >
+  qwen_instruct: >
     Male, late 20s, warm Indian accent, naturally curious travel buddy,
-    medium energy, relaxed slow pacing, conversational, speaks like he is
-    experiencing the place for the first time, not a radio host or presenter
+    medium energy, relaxed conversational pacing
 
 female:
   id: F
-  maya_prompt: >
+  qwen_instruct: >
     Female, early 30s, warm Indian accent, calm storytelling friend,
-    slight smile in voice, emotionally expressive but not theatrical,
-    slower pacing than conversational norm, like sharing something she
-    just discovered, not a tour guide or documentary narrator
+    slight smile in voice, slightly slower pacing
