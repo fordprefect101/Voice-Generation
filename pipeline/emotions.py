@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 
 EMOTION_INSTRUCT: dict[str, str] = {
     "neutral": "neutral, calm delivery",
@@ -19,3 +20,15 @@ def default_pause_after(text: str, emotion: str) -> int:
     if emotion == "playful" and len(stripped) < 100:
         return 300
     return 450
+
+def text_for_tts(text: str) -> str:
+    """Keep delivery intent; remove chars models sometimes speak aloud."""
+    t = text
+    # ellipsis → natural pause cue in prose (not "dot dot dot")
+    t = t.replace("...", ",")   # or " — "
+    t = t.replace("…", ",")
+    # excitement/question → sentence end (prosody from emotion refs / wording)
+    t = t.replace("!", ".")
+    t = t.replace("?", ".")
+    t = re.sub(r"\s+", " ", t).strip()
+    return t

@@ -1,11 +1,13 @@
 male:
   id: M
   qwen_instruct: >
-    Male, late 20s, warm Indian accent, naturally curious travel buddy,
-    medium energy, relaxed conversational pacing
+    Male, late 20s, warm Indian accent, excited travel buddy,
+    high energy, very expressive, natural human emotion,
+    not robotic, not flat, animated storytelling
 
 female:
   id: F
   qwen_instruct: >
-    Female, early 30s, warm Indian accent, calm storytelling friend,
-    slight smile in voice, slightly slower pacing
+    Female, early 30s, warm Indian accent, lively storytelling friend,
+    high energy, warm and expressive, natural human emotion,
+    not robotic, not flat, animated and engaging

@@ -20,12 +20,15 @@ ref_dir.mkdir(parents=True, exist_ok=True)
 
 # Same neutral line for both — identity, not emotion
 REF_TEXT = (
-    "Hi, I'm glad we're exploring this place together today. "
-    "It feels good to take it slow and notice the details."
+    "Whoa, this place is incredible! Can you believe how vibrant everything feels? "
+    "I am loving this already."
 )
 
 for key, filename in [("male", "male_ref.wav"), ("female", "female_ref.wav")]:
-    instruct = voices[key]["qwen_instruct"].strip() + ", neutral calm delivery"
+    instruct = (
+    voices[key]["qwen_instruct"].strip()
+    + ", lively conversational delivery, warm and expressive, natural human emotion, not robotic, not monotone"
+)
     print(f"Creating {filename}...")
     wavs, sr = model.generate_voice_design(
         text=REF_TEXT,
