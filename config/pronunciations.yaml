@@ -1,0 +1,45 @@
+# Speak-forms injected into the dialogue script before TTS (MOSS / CosyVoice).
+# The model only sees `to` spellings — there is no separate pronunciation channel.
+#
+# Rules that work better with MOSS --use_normalize:
+# - Prefer NO hyphens (normalize often strips "-" and can break words oddly).
+# - Prefer Latin respells a native Indian-English speaker would type.
+# - Longer `from` phrases first (code sorts by length).
+#
+# Future: an LLM pronunciation writer will propose/update `to` values (or emit
+# per-script replacements). Until then, this lexicon is the source of truth.
+# Hook: pipeline.pronounce.resolve_speak_forms / apply_pronunciations.
+
+replacements:
+  - from: "Chokhi Dhani"
+    to: "Chokhee Dhaanee"
+  - from: "Kalbelia"
+    to: "Kalbeliya"
+  - from: "Ghoomar"
+    to: "Ghumar"
+  - from: "Kathputli"
+    to: "Kathputlee"
+  - from: "dal baati churma"
+    to: "daal baati choorma"
+  - from: "Dal Baati Churma"
+    to: "Daal Baati Choorma"
+  - from: "Dal, Baati, and Churma"
+    to: "Daal, Baati, and Choorma"
+  - from: "gatte ki sabzi"
+    to: "gutte ki sabzi"
+  - from: "Gatte ki Sabzi"
+    to: "Gutte ki sabzi"
+  - from: "bajre ki roti"
+    to: "bajra ki roti"
+  - from: "Bajre ki Roti"
+    to: "Bajra ki roti"
+  - from: "manuhar"
+    to: "manuhaar"
+  - from: "Manuhar"
+    to: "Manuhaar"
+  - from: "ghagras"
+    to: "ghaagraas"
+  - from: "dhol drum"
+    to: "dhohl drum"
+  - from: "dhol"
+    to: "dhohl"

@@ -3,7 +3,17 @@ pyyaml>=6.0
 python-dotenv>=1.0.0
 openai>=1.0.0
 torch>=2.0.0
+torchaudio>=2.0.0
 transformers>=4.40.0
 soundfile>=0.12.0
 audioop-lts>=0.2.1; python_version >= "3.13"
+huggingface_hub>=0.24.0
+librosa>=0.10.0
+numpy>=1.24.0
+
+# CosyVoice 3: clone + install its own deps
+#   ./setup_cosyvoice.sh
+# Or use cosyvoice_dialogue_colab.ipynb on CUDA.
+
+# Optional Qwen fallback / voice-ref factory
 qwen-tts

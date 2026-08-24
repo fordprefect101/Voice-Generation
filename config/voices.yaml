@@ -1,13 +1,17 @@
 male:
   id: M
+  # Synced from config/hosts.yaml qwen_instruct (Qwen3-TTS VoiceDesign style).
   qwen_instruct: >
-    Male, late 20s, warm Indian accent, excited travel buddy,
-    high energy, very expressive, natural human emotion,
-    not robotic, not flat, animated storytelling
+    Male, early 30s, medium pitch, warm natural vocal weight,
+    light Indian-English accent, easy mid conversational pace,
+    soft smile in the voice, clear articulation, gentle pitch movement,
+    calm confident friendly tone — grounded and present, never shouty.
 
 female:
   id: F
   qwen_instruct: >
-    Female, early 30s, warm Indian accent, lively storytelling friend,
-    high energy, warm and expressive, natural human emotion,
-    not robotic, not flat, animated and engaging
+    Female, early 30s, low-to-mid pitch with warm chesty alto weight,
+    light Indian-English accent, easy conversational pace that moves,
+    natural smile in the voice, clear articulation, light lift on key words,
+    energy that shifts: curious question, soft amused beat, then warm close —
+    friendly and present, never bubbly, never flat, never shouty.

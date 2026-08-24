@@ -3,6 +3,8 @@ import soundfile as sf
 import torch
 from qwen_tts import Qwen3TTSModel
 
+from pipeline.hosts import host_qwen_instruct, host_ref_sample
+
 DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
 DTYPE = torch.float16 if DEVICE == "mps" else torch.float32
 
@@ -17,27 +19,24 @@ model = Qwen3TTSModel.from_pretrained(
 out_dir = Path("output")
 out_dir.mkdir(parents=True, exist_ok=True)
 
+# Instruct style aligned with Qwen3-TTS VoiceDesign docs:
+# gender, age, timbre, accent, pace, emotion/prosody — not cast-relationship prose.
+# https://qwen.ai/blog?id=qwen3tts-0115
 jobs = [
     {
         "file": "qwen_male.wav",
-        "text": "Wow, this place looks even better than I imagined.",
-        "instruct": (
-            "Male, late 20s, warm Indian accent, "
-            "relaxed conversational pacing, curious discovery tone"
-        ),
+        "text": host_ref_sample("M"),
+        "instruct": host_qwen_instruct("M"),
     },
     {
         "file": "qwen_female.wav",
-        "text": "I know, right? Wait until you see the courtyard.",
-        "instruct": (
-            "Female, early 30s, warm Indian accent, "
-            "calm friendly voice, slightly slower pacing, playful amused tone"
-        ),
+        "text": host_ref_sample("F"),
+        "instruct": host_qwen_instruct("F"),
     },
 ]
-
 for job in jobs:
     print(f"Generating {job['file']}...")
+    print(f"  instruct: {job['instruct']}")
     wavs, sr = model.generate_voice_design(
         text=job["text"],
         language="English",

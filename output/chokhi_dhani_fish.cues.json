@@ -1,0 +1,137 @@
+[
+  {
+    "index": 1,
+    "speaker": "M",
+    "text": "Wow! Just take a look around. It feels like we've stepped through a time portal and landed right in the middle of a vibrant, bustling Rajasthani village! This is Chokhee Dhaanee, and isn't it just spectacular?",
+    "section": "arrival",
+    "hold_after_ms": 2200,
+    "wants_hold": true,
+    "tagged_text": "Wow! Just take a look around. It feels like we've stepped through a time portal and landed right in the middle of a vibrant, bustling Rajasthani village! This is [emphasis] Chokhee Dhaanee, and isn't it just spectacular?"
+  },
+  {
+    "index": 2,
+    "speaker": "F",
+    "text": "It's absolutely breathtaking! And you're right, that's precisely the feeling they want to create. Chokhee Dhaanee literally means a Fine Hamlet' or a 'Special Village'. It’s not an ancient, historical village itself, but a magnificent, living recreation designed to give every visitor the most authentic taste of Rajasthan's rich culture and heritage, all in one enchanting place.",
+    "section": "arrival",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "It's absolutely breathtaking! And you're right, that's precisely the feeling they want to create. Chokhee Dhaanee literally means a [emphasis] Fine Hamlet' or a 'Special Village'. It’s not an ancient, historical village itself, but a magnificent, living recreation designed to give every visitor the most authentic taste of Rajasthan's rich culture and heritage, all in one enchanting place."
+  },
+  {
+    "index": 3,
+    "speaker": "M",
+    "text": "You can feel it in the air! Listen to that... the sound of folk music, the distant beat of a dhohl drum, the laughter. And the smells! The earthy aroma from the clay pots mixed with delicious food being cooked somewhere nearby. As the sun sets, the whole village starts to glow with hundreds of lanterns and diyas.",
+    "section": "culture",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "You can feel it in the air! Listen to that... the sound of folk music, the distant beat of a [emphasis] dhohl drum, the laughter. And the smells! The earthy aroma from the clay pots mixed with delicious food being cooked somewhere nearby. As the sun sets, the whole village starts to glow with hundreds of lanterns and [emphasis] diyas."
+  },
+  {
+    "index": 4,
+    "speaker": "F",
+    "text": "Exactly! The entire concept is to immerse you in a traditional village fair atmosphere. Look over there! Those are the famous folk performers of Rajasthan. You’ll see the Kalbeliya dancers, with their fluid, snake-like movements, and the Ghumar dancers, swirling in their stunningly colourful ghaagraas. Their energy is just infectious!",
+    "section": "performance",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "Exactly! The entire concept is to immerse you in a traditional village fair atmosphere. Look over there! Those are the famous folk performers of Rajasthan. You’ll see the [emphasis] Kalbeliya dancers, with their fluid, snake-like movements, and the [emphasis] Ghumar dancers, swirling in their stunningly colourful ghaagraas. Their energy is just infectious!"
+  },
+  {
+    "index": 5,
+    "speaker": "M",
+    "text": "And the puppet shows! The Kathputlee! I love how they tell ancient tales of kings and queens with those brightly dressed puppets. It’s not just for kids; it’s a mesmerizing art form that’s been passed down through generations.",
+    "section": "performance",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "And the puppet shows! The [emphasis] Kathputlee! I love how they tell ancient tales of kings and queens with those brightly dressed puppets. It’s not just for kids; it’s a mesmerizing art form that’s been passed down through generations."
+  },
+  {
+    "index": 6,
+    "speaker": "M",
+    "text": "And speaking of traditions, you absolutely have to try a camel ride! Or maybe an elephant ride?",
+    "section": "performance",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "And speaking of traditions, you absolutely have to try a camel ride! Or maybe an elephant ride?"
+  },
+  {
+    "index": 7,
+    "speaker": "F",
+    "text": "Why not both? The slow, swaying gait of a camel gives you a fantastic view of the entire fairground. And there’s also the rustic bullock cart ride for a truly authentic village experience. It's a bit bumpy, but so much fun! This place is all about participation. You don't just watch, you experience it firsthand.",
+    "section": "performance",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "[chuckle] Why not both? The slow, swaying gait of a camel gives you a fantastic view of the entire fairground. And there’s also the rustic bullock cart ride for a truly authentic village experience. It's a bit bumpy, but so much fun! This place is all about participation. You don't just watch, you experience it firsthand."
+  },
+  {
+    "index": 8,
+    "speaker": "M",
+    "text": "Oh, for sure! You can get beautiful, intricate henna, or Mehendi, designs painted on your hands. And look at the artisans at work! You can see potters shaping clay on their wheels, weavers creating incredible textiles, and painters crafting delicate miniature art. It’s a living museum of Rajasthani craftsmanship.",
+    "section": "craft",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "Oh, for sure! You can get beautiful, intricate henna, or [emphasis] Mehendi, designs painted on your hands. And look at the artisans at work! You can see potters shaping clay on their wheels, weavers creating incredible textiles, and painters crafting delicate miniature art. It’s a living museum of Rajasthani craftsmanship."
+  },
+  {
+    "index": 9,
+    "speaker": "F",
+    "text": "It is. And it’s the perfect place to find a truly unique souvenir. But beyond the crafts and rides, Chokhee Dhaanee is most famous for one thing: its legendary Rajasthani feast.",
+    "section": "craft",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "It is. And it’s the perfect place to find a truly unique souvenir. But beyond the crafts and rides, Chokhee Dhaanee is most famous for one thing: its legendary Rajasthani feast."
+  },
+  {
+    "index": 10,
+    "speaker": "M",
+    "text": "I'm already excited! I've heard so much about it. They serve you in the traditional style, right? Sitting on low stools, with food served on a leaf platter. It's not just a meal; it's an event showcasing Rajasthan’s legendary hospitality.",
+    "section": "food",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "I'm already excited! I've heard so much about it. They serve you in the traditional style, right? Sitting on low stools, with food served on a leaf platter. It's not just a meal; it's an event showcasing Rajasthan’s legendary hospitality."
+  },
+  {
+    "index": 11,
+    "speaker": "F",
+    "text": "That’s the one. Prepare to be pampered and fed until you can't possibly eat another bite! The star of the show is, of course, Daal, Baati, and Choorma. The Baati are hard wheat rolls, baked to perfection and then broken up and drenched in pure ghee. You eat them with the spicy Dal, which is a lentil curry, and the sweet Churma, a powdered wheat dessert.",
+    "section": "food",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "That’s the one. Prepare to be pampered and fed until you can't possibly eat another bite! The star of the show is, of course, [emphasis] Daal, Baati, and Choorma. The [emphasis] Baati are hard wheat rolls, baked to perfection and then broken up and drenched in pure ghee. You eat them with the spicy [emphasis] Dal, which is a lentil curry, and the sweet [emphasis] Churma, a powdered wheat dessert."
+  },
+  {
+    "index": 12,
+    "speaker": "M",
+    "text": "My mouth is watering already! What else can we expect?",
+    "section": "food",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "My mouth is watering already! What else can we expect?"
+  },
+  {
+    "index": 13,
+    "speaker": "F",
+    "text": "Oh, the list is endless! There's gutte ki sabzi, various types of bread like bajra ki roti, delicious chutneys, and so much more. The servers will insist you try everything with a warm, welcoming smile. It’s a gesture called manuhaar, a loving insistence to eat more. Don’t be shy, just enjoy it!",
+    "section": "food",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "Oh, the list is endless! There's [emphasis] gutte ki sabzi, various types of bread like [emphasis] bajra ki roti, delicious chutneys, and so much more. The servers will insist you try everything with a warm, welcoming smile. It’s a gesture called [emphasis] manuhaar, a loving insistence to eat more. Don’t be shy, just enjoy it!"
+  },
+  {
+    "index": 14,
+    "speaker": "M",
+    "text": "So, Chokhee Dhaanee isn’t just a tourist spot, is it? It’s a celebration. It’s a way to experience the soul of Rajasthan, its colours, its flavours, its music, and its warm-hearted people, all in one evening.",
+    "section": "close",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "So, Chokhee Dhaanee isn’t just a tourist spot, is it? It’s a celebration. It’s a way to experience the soul of Rajasthan, its colours, its flavours, its music, and its warm-hearted people, all in one evening."
+  },
+  {
+    "index": 15,
+    "speaker": "F",
+    "text": "You've said it perfectly. It captures the timeless, vibrant spirit of this incredible state. It’s a place where memories are made, where you can dance, eat, shop, and simply soak in the joyous atmosphere.",
+    "section": "close",
+    "hold_after_ms": 0,
+    "wants_hold": false,
+    "tagged_text": "You've said it perfectly. It captures the timeless, vibrant spirit of this incredible state. It’s a place where memories are made, where you can dance, eat, shop, and simply soak in the joyous atmosphere."
+  }
+]

@@ -1,0 +1,71 @@
+# Locked host personalities for travel-audio dialogue.
+#
+# Field split (important):
+# - role / personality / one_line / relationship → script Writer (GPT) only
+# - qwen_instruct → Qwen3-TTS VoiceDesign only (acoustic NL description)
+# - ref_sample → spoken text for VoiceDesign identity takes
+#
+# VoiceDesign instruct style follows Qwen3-TTS docs:
+# https://qwen.ai/blog?id=qwen3tts-0115
+# https://github.com/QwenLM/Qwen3-TTS
+# Describe gender, age, timbre, accent, pace, emotion/prosody in natural language.
+# Do NOT put cast-relationship rules into qwen_instruct.
+
+male:
+  id: M
+  role: guide_context
+  age_vibe: 30–34, knowledgeable travel companion who has actually been there
+  warmth: 7/10 — warm, relaxed, occasional smile
+  pace: easy-medium (~145–155 WPM); never rushed
+  accent: light Indian-English; natural, not exaggerated
+  energy_ceiling: 7/10 — curious teacher; animated on reveals, never influencer hype
+  personality: >
+    Observant, confident, slightly conversational.
+    Feels like "Let me show you something interesting" — not "Let me tell you a fact."
+  one_line: >
+    Warm, grounded Indian-English male in his early 30s, like a knowledgeable friend
+    showing you around a place he loves. Easy conversational pace, quietly confident,
+    curious rather than performative.
+  # VoiceDesign / CosyVoice acoustic brief (timbre + resting delivery)
+  qwen_instruct: >
+    Male, early 30s, medium pitch, warm natural vocal weight,
+    light Indian-English accent, easy mid conversational pace,
+    soft smile in the voice, clear articulation, gentle pitch movement,
+    calm confident friendly tone — grounded and present, never shouty.
+  ref_sample: >
+    You know, this place has a real pull to it. I've been around a few spots like this,
+    but here at Chokhee Dhaanee you can feel why people stay.
+    Let me show you something interesting — take it at an easy pace with me.
+
+female:
+  id: F
+  role: curiosity_reaction
+  age_vibe: 28–32, curious travel companion; slightly more expressive than M
+  warmth: 8/10 — noticeably warm; natural smile on lighter moments
+  pace: easy-medium (~140–150 WPM); slightly more pause on cultural details
+  accent: light Indian-English; polished but natural
+  energy_ceiling: 7/10 — curious teacher; genuine surprise/interest, never over-enthusiastic
+  personality: >
+    Curious, empathetic, occasionally playful.
+    Feels like "Wait, that's actually fascinating…" — not a scripted presenter.
+  one_line: >
+    Warm, expressive Indian-English female in her early 30s, like a genuinely curious
+    friend exploring a place with you. Easy conversational pace, naturally smiling,
+    occasionally surprised or playful, never presenter-like.
+  qwen_instruct: >
+    Female, early 30s, low-to-mid pitch with warm chesty alto weight,
+    light Indian-English accent, easy conversational pace that moves,
+    natural smile in the voice, clear articulation, light lift on key words,
+    energy that shifts: curious question, soft amused beat, then warm close —
+    friendly and present, never bubbly, never flat, never shouty.
+  # Prosody-rich identity take (for MOSS cloning). Include a few local names so
+  # pronunciation habits transfer. Re-run: python make_voices_refs.py --speaker female
+  ref_sample: >
+    Wait — that's actually fascinating. So this isn't only for show?
+    I love how that changes how you look at Chokhee Dhaanee.
+    Hah, okay, tell me about the Kalbeliya dancers next. I'm genuinely curious.
+
+relationship: >
+  M = guide / context. F = curiosity / reaction. They often alternate explain → question
+  → deepen, and may reverse roles. Contrast is personality, not "male serious / female bubbly."
+  Same age band and social register. Travel companions, not two narrators alternating paragraphs.

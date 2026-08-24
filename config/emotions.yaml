@@ -1,0 +1,36 @@
+# Emotion bank for Qwen voice-clone ref picking.
+#
+# "neutral" / identity (male_ref.wav, female_ref.wav) is the living DEFAULT voice:
+# warm, present, human — NOT emotionless. Most lines can use it.
+# Other keys are optional TILTS (same person, different delivery takes).
+#
+# To add a new emotion later:
+#   1. Add an entry under bank: with description + sample
+#   2. python make_emotion_refs.py --emotions your_new_key
+#   3. Re-run script agents (Writer reads this list)
+
+# Used when the Writer omits emotion or picks an unknown key.
+default_emotion: warm
+
+# Identity key → male_ref.wav / female_ref.wav (no separate bank file).
+identity_emotion: neutral
+
+bank:
+  curious:
+    description: noticing, real questions, light discovery
+    sample: "Wait… what is that over there? Is that part of the tradition too?"
+  playful:
+    description: light banter only — smile, not manic
+    sample: "Why not both? Come on — I dare you to try it with me."
+  excited:
+    description: rare true peaks — higher energy, never shouty
+    sample: "Okay — you have to see this! This is the moment right here!"
+  warm:
+    description: soft hospitality, reflection, friendly teaching
+    sample: "Yeah… this feels really special, doesn't it? I'm glad we're here."
+  wonder:
+    description: quiet awe, unhurried, never shouty
+    sample: "This… is something else. Just look at it for a second."
+  explanatory:
+    description: clear how/why definitions, patient and engaging
+    sample: "So here's the thing — they built it this way so visitors can feel the culture up close."

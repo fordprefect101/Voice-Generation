@@ -1,0 +1,27 @@
+# Post-TTS mix for travel audio (CosyVoice stitch + MOSS episode underlay).
+
+observation_hold_ms: 2200   # after "look / listen / take a moment" style cues
+crossfade_ms: 60
+bed_gain_db: -34            # under dialogue; keep subtle vs real venue noise
+bed_fade_ms: 1200
+
+# Section → ambience file under assets/ambience/ (generated placeholders OK).
+beds:
+  arrival: fair_soft.wav
+  culture: fair_soft.wav
+  performance: performance_soft.wav
+  craft: market_soft.wav
+  food: dining_soft.wav
+  close: fair_soft.wav
+  default: fair_soft.wav
+
+# If line text matches (case-insensitive), attach observation hold after the line.
+hold_patterns:
+  - "take a (quiet )?second"
+  - "take a moment"
+  - "look around"
+  - "if you can see"
+  - "if you hear"
+  - "listen for"
+  - "notice "
+  - "soak (it|this) in"

@@ -1,18 +1,28 @@
 import argparse
-from pathlib import Path
+import os
 
 from pipeline.parse_script import parse_script_file
 from pipeline.models import EnrichedLine, save_lines_json
 from pipeline.emotions import default_pause_after
-from pipeline.generate_qwen import generate_all
 from pipeline.stitch import stitch_episode
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run Qwen voice pipeline")
+    parser = argparse.ArgumentParser(description="Run voice pipeline (CosyVoice default)")
     parser.add_argument("script_file", help="Path to script text file")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--output-mp3", default="output/final.mp3")
+    parser.add_argument(
+        "--backend",
+        choices=("cosyvoice", "qwen"),
+        default="cosyvoice",
+        help="TTS backend (default: cosyvoice)",
+    )
+    parser.add_argument(
+        "--no-pace",
+        action="store_true",
+        help="Skip per-clip WPM time-stretch before stitch",
+    )
     args = parser.parse_args()
 
     print(f"Parsing script: {args.script_file}...")
@@ -23,7 +33,7 @@ def main():
 
     enriched = []
     for turn in turns:
-        emotion = "neutral"
+        emotion = "warm"
         if "?" in turn.text:
             emotion = "curious"
         elif "!" in turn.text:
@@ -47,7 +57,14 @@ def main():
     print(f"Saved {len(enriched)} lines to {lines_path}")
 
     clips_dir = "output/clips"
-    print("Generating audio clips...")
+    if args.no_pace:
+        os.environ["PACE_SKIP"] = "1"
+    print(f"Generating audio clips ({args.backend})...")
+    if args.backend == "qwen":
+        from pipeline.generate_qwen import generate_all
+    else:
+        from pipeline.generate_cosyvoice import generate_all
+
     generate_all(
         enriched,
         config_path="config/voices.yaml",

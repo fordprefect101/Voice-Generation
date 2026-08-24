@@ -1,0 +1,18 @@
+# Per-line speaking-rate targets (words per minute).
+# After TTS, clips outside ±tolerance are time-stretched (pitch-preserving) to match.
+
+default_wpm: 170
+tolerance: 0.10          # only adjust if actual/target is outside 0.90–1.10
+min_factor: 0.85          # max slowdown (~+18% duration)
+max_factor: 1.15          # max speedup (~-13% duration)
+min_words: 4             # skip tiny lines (unstable WPM)
+min_duration_sec: 0.4
+
+by_emotion:
+  wonder: 155
+  warm: 170
+  explanatory: 170
+  curious: 165
+  neutral: 170
+  playful: 185
+  excited: 195

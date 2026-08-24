@@ -1,0 +1,22 @@
+{
+  "male": "You know, this place has a real pull to it. I've been around a few spots like this, but here at Chokhee Dhaanee you can feel why people stay. Let me show you something interesting — take it at an easy pace with me.",
+  "female": "Wait — that's actually fascinating. So this isn't only for show? I love how that changes how you look at Chokhee Dhaanee. Hah, okay, tell me about the Kalbeliya dancers next. I'm genuinely curious.",
+  "emotions": {
+    "male": {
+      "curious": "Wait… what is that over there? Is that part of the tradition too?",
+      "playful": "Why not both? Come on — I dare you to try it with me.",
+      "excited": "Okay — you have to see this! This is the moment right here!",
+      "warm": "Yeah… this feels really special, doesn't it? I'm glad we're here.",
+      "wonder": "This… is something else. Just look at it for a second.",
+      "explanatory": "So here's the thing — they built it this way so visitors can feel the culture up close."
+    },
+    "female": {
+      "curious": "Wait… what is that over there? Is that part of the tradition too?",
+      "playful": "Why not both? Come on — I dare you to try it with me.",
+      "excited": "Okay — you have to see this! This is the moment right here!",
+      "warm": "Yeah… this feels really special, doesn't it? I'm glad we're here.",
+      "wonder": "This… is something else. Just look at it for a second.",
+      "explanatory": "So here's the thing — they built it this way so visitors can feel the culture up close."
+    }
+  }
+}
