@@ -397,22 +397,33 @@ MOSS only had punctuation. CosyVoice had emphasize[] on the side. Fish needs the
 LINE itself to be placeable. Do not write punch fragments ("Living recreation."),
 brochure F paragraphs, or "time portal / breathtaking / symphony of flavours".
 
-## SHAPE (split freely — one intention per turn)
-Turn length is short. Episode length is NOT. Split the source; do not summarise it.
+## YOUR JOB (reshape in place — do NOT densify)
+The source_lines ARE the full episode already. Rewrite phrasing and split further
+when intentions differ. Do NOT outline, tighten, trim, or "pace down" the script.
+Spoken word count must stay at or above the source. Turn count may go UP (further
+splits) but must not collapse into a short highlight reel.
+Ban: "concise", "tighten", "trim for pacing", merging many beats into one turn,
+dropping craft/food/ride detail to reach a short runtime.
+
+## SHAPE (one intention per turn)
+Turn length is short. Episode length is NOT.
 1) NAMES as their own beat: "That's Chokhi Dhani." not buried in a definition.
 2) REAL QUESTIONS as the whole F turn when asking. Ban "isn't it?" / "doesn't it?".
-3) SHORT OBSERVATION, then STOP (at least two in the episode):
+3) SHORT OBSERVATION, then STOP (at least two in the episode) — insert without
+   deleting surrounding facts:
    "If you catch a dhol later, take a quiet second."
    "If you can see dancers nearby, stay with it a moment."
 4) LISTS → M. F does not read Kalbelia + Ghoomar + ghagras in one turn.
 5) One light beat, once: "Why not both?" after camel vs elephant — not after the dancers.
-6) Close: useful next step. Ban "sweep you off your feet", "pure magic",
-   "unforgettable", "let the magic". Example: "If you're hungry, head toward the
+6) Close: replace slogan endings with a useful next step. Do not delete the food
+   or craft beats to make room. Example: "If you're hungry, head toward the
    thali seating and take it slow."
 
 ## MUST COVER (fail if any are missing)
 Keep every source beat below. Situation-safe wording is required; deleting the
-fact is not allowed. Target 24–32 turns and 450+ spoken words.
+fact is not allowed. Preserve roughly the source mass (same order of magnitude
+of turns and spoken words as source_lines — typically 24+ turns and hundreds of
+words for a full venue script).
 - Chokhi Dhani name; Fine Hamlet / Special Village; living recreation, not an
   ancient village
 - Folk music; dhol; clay-pot aromas / food cooking nearby
@@ -442,6 +453,7 @@ F: "It's breathtaking! Did you know Chokhi Dhani means Fine Hamlet? It's a livin
 recreation designed to give a taste of Rajasthan's rich culture."
 F: "If you see dancers they might be Kalbelia or Ghoomar swirling in ghagras."
 F: "Explore every corner and let the magic sweep you off your feet."
+A 10–15 line "highlights" pass that skips artisans, baati detail, or manuhar.
 
 ## TURN SHAPE (examples of length — not a complete episode)
 M: "Here we are. That's Chokhi Dhani."
@@ -457,7 +469,8 @@ Do not add [tags]. Do not output pause_ms / emphasize fields.
 Return ONLY valid JSON:
 {{"lines":[{{"speaker":"M","text":"...","section":"arrival"}}, ...]}}
 section must be one of: {", ".join(_SECTIONS)}.
-Speakers: only "M" or "F". Split turns when intentions differ.
+Speakers: only "M" or "F". Prefer one edited line per source index; split further
+when intentions differ. Never return a short outline of the source.
 """
 
 
@@ -517,6 +530,8 @@ Never: [laugh], [laughing], [shouting], [whisper], [warm], [with strong accent].
 - Keep every cultural name and dish from the source lines you were given.
   Do not drop camel, elephant, bullock, Kathputli, lanterns/diyas, baati/ghee,
   or manuhar. Do not collapse the episode to a 12-line outline.
+- Do not densify: spoken word count must stay near the source. Light situation-safe
+  rewrites only — not a shorter highlight reel.
 - Source lines are ALREADY split. Return one output line per source_line index.
   You may lightly rewrite a line (situation-safe, tags). Do not merge two
   indexes into one paragraph. Do not omit an index.
@@ -671,6 +686,9 @@ _REQUIRED_BEATS: list[tuple[str, re.Pattern[str]]] = [
 ]
 _MIN_TURNS = 22
 _MIN_SPOKEN_WORDS = 400
+# Reject drafts that shrink the mechanical split / source mass.
+_SOURCE_WORD_RATIO = 0.90
+_SOURCE_TURN_RATIO = 0.90
 
 
 def _spoken_blob(rows: list[dict[str, str]] | list[ParsedTurn]) -> str:
@@ -681,15 +699,50 @@ def _spoken_blob(rows: list[dict[str, str]] | list[ParsedTurn]) -> str:
     return "\n".join(parts)
 
 
-def _coverage_gaps(rows: list[dict[str, str]] | list[ParsedTurn]) -> list[str]:
+def _spoken_stats(rows: list[dict[str, str]] | list[ParsedTurn]) -> tuple[int, int]:
+    """Return (turn_count, spoken_word_count)."""
+    return len(rows), len(_spoken_blob(rows).split())
+
+
+def _min_turns_for_source(source_turns: int | None) -> int:
+    if source_turns is None:
+        return _MIN_TURNS
+    return max(_MIN_TURNS, int(source_turns * _SOURCE_TURN_RATIO))
+
+
+def _min_words_for_source(source_words: int | None) -> int:
+    if source_words is None:
+        return _MIN_SPOKEN_WORDS
+    return max(_MIN_SPOKEN_WORDS, int(source_words * _SOURCE_WORD_RATIO))
+
+
+def _coverage_gaps(
+    rows: list[dict[str, str]] | list[ParsedTurn],
+    *,
+    source_words: int | None = None,
+    source_turns: int | None = None,
+) -> list[str]:
     blob = _spoken_blob(rows)
     missing = [name for name, pat in _REQUIRED_BEATS if not pat.search(blob)]
     n = len(rows)
     words = len(blob.split())
-    if n < _MIN_TURNS:
-        missing.append(f"too few turns ({n}; need ≥{_MIN_TURNS})")
-    if words < _MIN_SPOKEN_WORDS:
-        missing.append(f"too few words ({words}; need ≥{_MIN_SPOKEN_WORDS})")
+    min_turns = _min_turns_for_source(source_turns)
+    min_words = _min_words_for_source(source_words)
+    if n < min_turns:
+        if source_turns is not None:
+            missing.append(
+                f"too few turns ({n}; need ≥{min_turns} vs {source_turns} source)"
+            )
+        else:
+            missing.append(f"too few turns ({n}; need ≥{min_turns})")
+    if words < min_words:
+        if source_words is not None:
+            missing.append(
+                f"too thin vs source ({words} vs {source_words} words; "
+                f"need ≥{min_words})"
+            )
+        else:
+            missing.append(f"too few words ({words}; need ≥{min_words})")
     return missing
 
 
@@ -701,14 +754,19 @@ def run_fish_editor(
 ) -> list[dict[str, str]]:
     """Situation-safe companion edit, shaped for Fish hang-points. No [tags]."""
     client = client or _client()
+    src_turns, src_words = _spoken_stats(turns)
+    min_turns = _min_turns_for_source(src_turns)
+    min_words = _min_words_for_source(src_words)
     payload = {
         "source_lines": [
             {"index": t.index, "speaker": t.speaker, "text": t.text} for t in turns
         ]
     }
     user = (
-        "Edit this on-site travel dialogue for Fish S2. SPLIT into many short "
-        "turns. Cover every MUST COVER beat. Do not summarise the episode down. "
+        "Edit this on-site travel dialogue for Fish S2. Rewrite in place / split "
+        "further — do NOT summarise or densify. Cover every MUST COVER beat. "
+        f"Keep ≥{min_words} spoken words and ≥{min_turns} turns "
+        f"(source has {src_words} words, {src_turns} turns). "
         "Do not add [tags]. Do not write a MOSS or CosyVoice script.\n\n"
         + json.dumps(payload, ensure_ascii=False)
     )
@@ -725,16 +783,23 @@ def run_fish_editor(
             data.get("lines") if isinstance(data, dict) else data,
             tagged=False,
         )
-        gaps = _coverage_gaps(parsed)
+        gaps = _coverage_gaps(
+            parsed, source_words=src_words, source_turns=src_turns
+        )
         words = len(_spoken_blob(parsed).split())
-        print(f"  editor attempt {attempt + 1}: {len(parsed)} turns, {words} words")
+        print(
+            f"  editor attempt {attempt + 1}: {len(parsed)} turns, {words} words "
+            f"(source {src_turns} turns / {src_words} words)"
+        )
         if not gaps:
             return parsed
         print("  missing:", "; ".join(gaps))
         user = (
-            "Your previous draft DROPPED required content or was too thin "
-            f"({words} spoken words). Rewrite the FULL episode again. "
-            "Split the source into 24–32 turns of about 15–22 words each. "
+            "Your previous draft DROPPED required content or shrank the episode "
+            f"({words} spoken words / {len(parsed)} turns vs source "
+            f"{src_words} words / {src_turns} turns). "
+            "Rewrite the FULL episode again in place. Do not outline or tighten. "
+            f"Keep ≥{min_words} spoken words and ≥{min_turns} turns. "
             "Explain baati (hard wheat rolls, ghee), dal, churma, camel view, "
             "elephant, Kathputli (kings and queens). Restore:\n- "
             + "\n- ".join(gaps)
@@ -755,12 +820,15 @@ def run_fish_director(
     client = client or _client()
     source = _source_payload(turns)
     n_src = len(source)
+    src_turns, src_words = _spoken_stats(source)
+    min_words = _min_words_for_source(src_words)
     user = (
         "Rewrite as a Fish S2 score. Each source_line is already one turn — "
         f"return {n_src} lines (one per index). Reshape wording so tags have "
         "hang-points, then place tags. Situation-safe: no 'look over there', "
         "'listen to that', 'time portal', or 'as the sun sets' as hard facts. "
-        "Do not merge turns. Do not drop facts.\n\n"
+        f"Do not merge turns. Do not drop facts. Keep ≥{min_words} spoken words "
+        f"(source has {src_words}).\n\n"
         + json.dumps({"source_lines": source}, ensure_ascii=False)
     )
     parsed: list[dict[str, str]] = []
@@ -776,18 +844,23 @@ def run_fish_director(
             data.get("lines") if isinstance(data, dict) else data,
             tagged=True,
         )
-        gaps = _coverage_gaps(parsed)
+        gaps = _coverage_gaps(
+            parsed, source_words=src_words, source_turns=src_turns
+        )
         if len(parsed) < n_src - 2:
             gaps.append(f"merged turns ({len(parsed)} vs {n_src} source lines)")
         words = len(_spoken_blob(parsed).split())
-        print(f"  writer attempt {attempt + 1}: {len(parsed)} turns, {words} words")
+        print(
+            f"  writer attempt {attempt + 1}: {len(parsed)} turns, {words} words "
+            f"(source {src_turns} turns / {src_words} words)"
+        )
         if not gaps:
             break
         print("  missing:", "; ".join(gaps))
         user = (
             f"Return exactly {n_src} lines, one per source_line index. "
-            "Do not merge turns into long paragraphs. "
-            f"Keep ≥{_MIN_SPOKEN_WORDS} spoken words. Restore:\n- "
+            "Do not merge turns into long paragraphs. Do not densify. "
+            f"Keep ≥{min_words} spoken words (source {src_words}). Restore:\n- "
             + "\n- ".join(gaps)
             + "\nKeep tags in place. Situation-safe wording.\n\n"
             + json.dumps({"source_lines": source}, ensure_ascii=False)
@@ -836,7 +909,12 @@ def run_fish_travel_pipeline(
     else:
         print("Fish editor (situation-safe, Fish-shaped turns, no tags)...")
         directed_source = run_fish_editor(split, model=model, client=client)
-        if _coverage_gaps(directed_source):
+        split_turns, split_words = _spoken_stats(split)
+        if _coverage_gaps(
+            directed_source,
+            source_words=split_words,
+            source_turns=split_turns,
+        ):
             print(
                 "Editor still thin or missing beats; "
                 "writer will use the split source instead."
