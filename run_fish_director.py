@@ -3,12 +3,14 @@
 
 Input is the raw dialogue (e.g. chokhi_dhani.txt), not a MOSS export.
 The writer curates wording for Fish S2, then places inline [tags].
+Cues include pause_after_ms for per-utterance assemble (see run_fish_assemble.py).
 
 Usage:
   python run_fish_director.py chokhi_dhani.txt
   python run_fish_director.py chokhi_dhani.txt -o output/chokhi_dhani_fish.txt
 
-Then SCP the .txt to the VM Jupyter inputs folder (same refs as before).
+SCP the .txt AND .cues.json to the VM. Notebook generates one wav per utterance,
+then inserts pause_after_ms gaps. On Mac, mix beds with --no-holds.
 """
 from __future__ import annotations
 
@@ -76,8 +78,14 @@ def main() -> None:
 
     tagged = sum(1 for t in directed if "[" in t.text)
     holds = sum(1 for c in cues if c.get("hold_after_ms"))
+    pauses = [int(c.get("pause_after_ms") or 0) for c in cues]
     print(f"\nWrote {out} ({len(directed)} turns; {tagged} with tags)")
     print(f"Wrote {cues_path} ({holds} observation holds)")
+    if pauses:
+        print(
+            f"  pause_after_ms min/avg/max = "
+            f"{min(pauses)}/{sum(pauses)//len(pauses)}/{max(pauses)}"
+        )
     print("Preview:")
     for t, c in list(zip(directed, cues))[:8]:
         label = f"Speaker {_num(t.speaker)}" if args.style == "speaker" else f"[{t.speaker}]"
@@ -85,9 +93,14 @@ def main() -> None:
     if len(directed) > 8:
         print(f"  ... ({len(directed) - 8} more)")
     print(
-        "\nSCP to VM, then mix on Mac:\n"
-        f"  gcloud compute scp {out} $VM:~/fish-s2/inputs/ --zone=$ZONE\n"
-        f"  python run_mix_moss.py --episode episode.wav --cues {cues_path}"
+        "\nSCP .txt + .cues.json to VM, generate per-utterance, then on Mac:\n"
+        f"  gcloud compute scp {out} {cues_path} "
+        f"voices/refs/*.wav voices/refs/ref_texts.json "
+        f"$VM:~/fish-s2/inputs/ --zone=$ZONE\n"
+        f"  # after VM assemble:\n"
+        f"  python run_mix_moss.py --episode episode.wav --cues {cues_path} --no-holds\n"
+        f"  # or re-gap from clips:\n"
+        f"  python run_fish_assemble.py --clips fish_turns --cues {cues_path}"
     )
 
 

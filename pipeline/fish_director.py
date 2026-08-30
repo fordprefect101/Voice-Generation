@@ -879,7 +879,9 @@ def build_fish_cues(
     turns: list[ParsedTurn],
     sections: list[str] | None = None,
 ) -> list[dict[str, Any]]:
-    """Cues use spoken text (tags stripped) so mix word-share still works."""
+    """Cues use spoken text (tags stripped); pause_after_ms drives clip assembly."""
+    from pipeline.fish_timeline import enrich_cues_with_pauses
+
     spoken = [
         ParsedTurn(index=t.index, speaker=t.speaker, text=strip_fish_tags(t.text))
         for t in turns
@@ -887,8 +889,7 @@ def build_fish_cues(
     cues = build_cues(spoken, sections)
     for c, t in zip(cues, turns):
         c["tagged_text"] = t.text
-    return cues
-
+    return enrich_cues_with_pauses(cues)
 
 def run_fish_travel_pipeline(
     turns: list[ParsedTurn],
