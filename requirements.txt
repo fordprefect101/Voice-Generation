@@ -10,6 +10,13 @@ audioop-lts>=0.2.1; python_version >= "3.13"
 huggingface_hub>=0.24.0
 librosa>=0.10.0
 numpy>=1.24.0
+accelerate>=0.27.0
+protobuf>=4.25.0
+sentencepiece>=0.2.0
+
+# Hindi Fish identity refs (Mac) — install before make_hindi_refs_*.py:
+#   pip install git+https://github.com/huggingface/parler-tts.git
+#   pip install git+https://github.com/AI4Bharat/IndicF5.git
 
 # CosyVoice 3: clone + install its own deps
 #   ./setup_cosyvoice.sh

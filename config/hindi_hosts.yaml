@@ -1,0 +1,40 @@
+# Hindi Fish identity refs (Devanagari). Used by make_hindi_refs_parler.py / make_hindi_refs_indicf5.py
+#
+# ref_sample = exact words spoken in male_ref.wav / female_ref.wav (Fish --prompt-text).
+# parler_description = Indic Parler-TTS voice brief (name the speaker: Rohit / Divya).
+
+male:
+  parler_speaker: Rohit
+  parler_description: >
+    Rohit's voice is warm, conversational, and clear with natural Hindi delivery,
+    early 30s travel-companion energy, medium pace, soft smile in the voice,
+    very close recording with almost no background noise.
+  ref_sample: >
+    यह जगह सच में अलग लगती है। चोखी धानी में रुकने का मन इसलिए करता है।
+    चलो, आराम से दिखाता हूँ — बिल्कुल अपनी रफ़्तार से।
+
+female:
+  parler_speaker: Divya
+  parler_description: >
+    Divya's voice is warm, curious, and expressive with natural Hindi delivery,
+    early 30s, easy conversational pace, natural smile, light lift on questions,
+    very close recording with almost no background noise.
+  ref_sample: >
+    रुको — ये सच में दिलचस्प है। तो ये सिर्फ दिखावा नहीं?
+    अच्छा, आगे कलबेलिया नर्तकियों के बारे में बताओ। मुझे सच में जानना है।
+
+# Bundled IndicF5 seed prompts (download from GitHub if missing). ref_text MUST match the wav.
+indicf5_seeds:
+  male:
+    prompt_file: MAR_M_WIKI_00001.wav
+    ref_text: >
+      या प्रथाला एकोणीसशे पंचातर ईसवी पासून भारतीय दंड संहिताची धारा चारशे अठ्ठावीस
+      आणि चारशे एकोणतीसच्या अन्तर्गत निषेध केला.
+  female:
+    prompt_file: PAN_F_HAPPY_00001.wav
+    ref_text: >
+      ਭਹੰਪੀ ਵਿੱਚ ਸਮਾਰਕਾਂ ਦੇ ਭਵਨ ਨਿਰਮਾਣ ਕਲਾ ਦੇ ਵੇਰਵੇ ਗੁੰਝਲਦਾਰ ਅਤੇ ਹੈਰਾਨ ਕਰਨ ਵਾਲੇ ਹਨ,
+      ਜੋ ਮੈਨੂੰ ਖੁਸ਼ ਕਰਦੇ ਹਨ।
+
+relationship: >
+  M = guide / context. F = curiosity / reaction. Same travel-companion register as English hosts.
