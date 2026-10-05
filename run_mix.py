@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Mix a MOSS one-pass episode: observation holds + subtle ambience beds.
+"""Mix a one-pass Fish episode: observation holds + subtle ambience beds.
 
 Usage:
-  python run_mix_moss.py --episode /path/to/episode.wav \\
-      --cues output/chokhi_dhani_moss.cues.json -o output/episode_mixed.mp3
+  python run_mix.py --episode /path/to/episode.wav \\
+      --cues output/chokhi_dhani_fish.cues.json -o output/episode_mixed.mp3
 """
 from __future__ import annotations
 
@@ -23,8 +23,8 @@ from pipeline.stitch import normalize_loudness
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--episode", required=True, help="MOSS episode.wav")
-    parser.add_argument("--cues", required=True, help="*.cues.json from run_moss_director")
+    parser.add_argument("--episode", required=True, help="Fish episode.wav")
+    parser.add_argument("--cues", required=True, help="*.cues.json from run_fish_director")
     parser.add_argument("-o", "--output", default="output/episode_mixed.mp3")
     parser.add_argument(
         "--no-holds",

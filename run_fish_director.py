@@ -21,7 +21,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from pipeline.fish_director import run_fish_travel_pipeline
-from pipeline.moss_director import DEFAULT_MOSS_DIRECTOR_MODEL, save_moss_cues, save_moss_txt
+from pipeline.director_common import DEFAULT_DIRECTOR_MODEL, save_cues, save_txt
 from pipeline.parse_script import parse_script_file
 
 
@@ -40,7 +40,7 @@ def main() -> None:
         default=None,
         help="Cues JSON path (default: <output>.cues.json)",
     )
-    parser.add_argument("--model", default=DEFAULT_MOSS_DIRECTOR_MODEL)
+    parser.add_argument("--model", default=DEFAULT_DIRECTOR_MODEL)
     parser.add_argument(
         "--style",
         choices=("speaker", "tag"),
@@ -73,8 +73,8 @@ def main() -> None:
     )
     out = Path(args.output)
     cues_path = Path(args.cues) if args.cues else out.with_suffix(".cues.json")
-    save_moss_txt(out, directed, style=args.style)
-    save_moss_cues(cues_path, cues)
+    save_txt(out, directed, style=args.style)
+    save_cues(cues_path, cues)
 
     tagged = sum(1 for t in directed if "[" in t.text)
     holds = sum(1 for c in cues if c.get("hold_after_ms"))
@@ -98,7 +98,7 @@ def main() -> None:
         f"voices/refs/*.wav voices/refs/ref_texts.json "
         f"$VM:~/fish-s2/inputs/ --zone=$ZONE\n"
         f"  # after VM assemble:\n"
-        f"  python run_mix_moss.py --episode episode.wav --cues {cues_path} --no-holds\n"
+        f"  python run_mix.py --episode episode.wav --cues {cues_path} --no-holds\n"
         f"  # or re-gap from clips:\n"
         f"  python run_fish_assemble.py --clips fish_turns --cues {cues_path}"
     )
