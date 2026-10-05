@@ -18,9 +18,5 @@ sentencepiece>=0.2.0
 #   pip install git+https://github.com/huggingface/parler-tts.git
 #   pip install git+https://github.com/AI4Bharat/IndicF5.git
 
-# CosyVoice 3: clone + install its own deps
-#   ./setup_cosyvoice.sh
-# Or use cosyvoice_dialogue_colab.ipynb on CUDA.
-
-# Optional Qwen fallback / voice-ref factory
+# Qwen3-TTS VoiceDesign — designs the English reference voices (make_voices_refs.py)
 qwen-tts

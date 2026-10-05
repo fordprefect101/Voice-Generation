@@ -42,7 +42,7 @@ def host_role(speaker: str) -> str:
 
 
 def host_qwen_instruct(speaker: str) -> str:
-    """Acoustic NL brief for Qwen3-TTS VoiceDesign (and CosyVoice base)."""
+    """Acoustic NL brief for Qwen3-TTS VoiceDesign."""
     return str(_speaker_block(speaker).get("qwen_instruct") or "").strip()
 
 

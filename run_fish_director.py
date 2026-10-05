@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fish S2 travel pipeline: Fish-shaped editor → writer → pronunciations → .txt + cues.
 
-Input is the raw dialogue (e.g. chokhi_dhani.txt), not a MOSS export.
+Input is the raw dialogue (e.g. chokhi_dhani.txt).
 The writer curates wording for Fish S2, then places inline [tags].
 Cues include pause_after_ms for per-utterance assemble (see run_fish_assemble.py).
 
@@ -28,7 +28,7 @@ from pipeline.parse_script import parse_script_file
 def main() -> None:
     load_dotenv()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("script", help="Raw dialogue .txt (not a MOSS export)")
+    parser.add_argument("script", help="Raw dialogue .txt")
     parser.add_argument(
         "-o",
         "--output",
@@ -50,7 +50,7 @@ def main() -> None:
     parser.add_argument(
         "--skip-editor",
         action="store_true",
-        help="Skip Fish editor; writer still reshapes + tags (do not use a MOSS txt)",
+        help="Skip Fish editor; writer still reshapes + tags",
     )
     parser.add_argument(
         "--llm-pronounce",

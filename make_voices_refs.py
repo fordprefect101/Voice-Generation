@@ -2,8 +2,7 @@
 """Step 1 — generate IDENTITY voice refs (VoiceDesign).
 
 Identity = living warm default voice (code key "neutral"), NOT emotionless.
-Lock who M/F are first. Then run make_emotion_refs.py to clone emotion tilts
-from these files (same timbre, different delivery).
+Lock who M/F are first. Fish S2 then clones these files for every line.
 
 Examples:
   python make_voices_refs.py                      # both, 8 takes each
@@ -14,7 +13,7 @@ Examples:
 Outputs:
   voices/refs/male_ref.wav
   voices/refs/female_ref.wav
-  voices/refs/ref_texts.json   (identity texts; emotion keys preserved if present)
+  voices/refs/ref_texts.json   (identity texts — must match the wav words)
 """
 from __future__ import annotations
 
@@ -116,7 +115,6 @@ def pick_take(speaker: str, take: int) -> None:
     write_ref_texts()
     print(f"Promoted {src.name} -> {dst}")
     print(f"Transcript locked in {REF_DIR / 'ref_texts.json'}")
-    print("Next: python make_emotion_refs.py")
 
 
 def generate(speakers: list[str], n_takes: int) -> None:
@@ -181,9 +179,8 @@ def generate(speakers: list[str], n_takes: int) -> None:
     save_scores(scores)
     write_ref_texts()
     print(f"\nWrote {REF_DIR / 'ref_texts.json'}")
-    print("When identity sounds right:")
-    print("  python make_emotion_refs.py")
-    print("Upload later: male_ref.wav female_ref.wav male_*.wav female_*.wav ref_texts.json")
+    print("When identity sounds right, SCP to the Fish VM:")
+    print("  male_ref.wav female_ref.wav ref_texts.json")
 
 
 def parse_pick(items: list[str]) -> list[tuple[str, int]]:

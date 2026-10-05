@@ -1,8 +1,6 @@
 """Fish S2 travel pipeline: Fish-shaped editor → Fish writer → pronunciations → export.
 
 The script is a score Fish can read: words, where a [tag] sits, who is speaking.
-Do not decorate a MOSS export. Do not assume CosyVoice emphasize[] or MOSS
-punctuation-only prosody.
 """
 from __future__ import annotations
 

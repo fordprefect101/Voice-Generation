@@ -109,7 +109,7 @@ def load_bed(section: str, ambience_dir: Path | None = None) -> AudioSegment:
 
 
 def overlay_bed(dialogue: AudioSegment, section: str = "default") -> AudioSegment:
-    """Full-length subtle bed under a finished dialogue wav (MOSS episode)."""
+    """Full-length subtle bed under a finished dialogue wav."""
     if len(dialogue) == 0:
         return dialogue
     cfg = load_mix_config()
@@ -183,7 +183,7 @@ def insert_holds_by_word_share(
 ) -> AudioSegment:
     """Approx line boundaries by word share of nonsilent audio; insert holds.
 
-    Used for MOSS one-pass wav when we have the directed script texts + holds.
+    Used for a one-pass episode wav when we have the directed script texts + holds.
     """
     if not texts or len(texts) != len(hold_after_ms):
         return episode

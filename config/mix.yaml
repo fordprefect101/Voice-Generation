@@ -1,4 +1,4 @@
-# Post-TTS mix for travel audio (CosyVoice stitch + MOSS episode underlay).
+# Post-TTS mix for travel audio (Fish episode: turn gaps, holds, ambience beds).
 
 observation_hold_ms: 2200   # after "look / listen / take a moment" style cues
 crossfade_ms: 60

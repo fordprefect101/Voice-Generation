@@ -1,8 +1,8 @@
-# Speak-forms injected into the dialogue script before TTS (MOSS / CosyVoice).
+# Speak-forms injected into the dialogue script before TTS (Fish S2).
 # The model only sees `to` spellings — there is no separate pronunciation channel.
 #
-# Rules that work better with MOSS --use_normalize:
-# - Prefer NO hyphens (normalize often strips "-" and can break words oddly).
+# Rules:
+# - Prefer NO hyphens (text normalization can strip "-" and break words oddly).
 # - Prefer Latin respells a native Indian-English speaker would type.
 # - Longer `from` phrases first (code sorts by length).
 #

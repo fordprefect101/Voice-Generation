@@ -27,8 +27,6 @@ output/*.mp3
 output/*.wav
 assets/ambience/*.wav
 !assets/ambience/README.md
-# Keep output/lines.json if you hand-curate it; ignore if LLM-generated only:
-# output/lines.json
 
 # --- ML / local model caches (if ever stored in-repo) ---
 models/
@@ -36,7 +34,6 @@ checkpoints/
 *.pt
 *.bin
 *.safetensors
-third_party/CosyVoice/
 pretrained_models/
 
 # --- OS / editor ---
