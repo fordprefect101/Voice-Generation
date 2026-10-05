@@ -15,12 +15,12 @@ from openai import OpenAI
 
 from pipeline.hosts import hosts_brief_for_prompt
 from pipeline.models import ParsedTurn
-from pipeline.moss_director import (
-    DEFAULT_MOSS_DIRECTOR_MODEL,
-    _SECTIONS,
-    _client,
-    _chat_json,
+from pipeline.director_common import (
+    DEFAULT_DIRECTOR_MODEL,
+    SECTIONS,
     build_cues,
+    chat_json,
+    client as _client,
 )
 from pipeline.pronounce import apply_pronunciations_to_turns
 
@@ -468,7 +468,7 @@ Do not add [tags]. Do not output pause_ms / emphasize fields.
 ## OUTPUT
 Return ONLY valid JSON:
 {{"lines":[{{"speaker":"M","text":"...","section":"arrival"}}, ...]}}
-section must be one of: {", ".join(_SECTIONS)}.
+section must be one of: {", ".join(SECTIONS)}.
 Speakers: only "M" or "F". Prefer one edited line per source index; split further
 when intentions differ. Never return a short outline of the source.
 """
@@ -552,7 +552,7 @@ Never: [laugh], [laughing], [shouting], [whisper], [warm], [with strong accent].
 ## OUTPUT
 Return ONLY valid JSON:
 {{"lines":[{{"speaker":"M","text":"...words with optional [tags] in place...","section":"arrival"}}, ...]}}
-section must be one of: {", ".join(_SECTIONS)}.
+section must be one of: {", ".join(SECTIONS)}.
 Speakers: only "M" or "F".
 """
 
@@ -593,7 +593,7 @@ def _parse_fish_lines(
         if not text:
             continue
         section = str(raw.get("section") or "culture").strip().lower()
-        if section not in _SECTIONS:
+        if section not in SECTIONS:
             section = "culture"
         out.append({"speaker": sp, "text": text, "section": section})
     if not out:
@@ -749,7 +749,7 @@ def _coverage_gaps(
 def run_fish_editor(
     turns: list[ParsedTurn],
     *,
-    model: str = DEFAULT_MOSS_DIRECTOR_MODEL,
+    model: str = DEFAULT_DIRECTOR_MODEL,
     client: OpenAI | None = None,
 ) -> list[dict[str, str]]:
     """Situation-safe companion edit, shaped for Fish hang-points. No [tags]."""
@@ -772,7 +772,7 @@ def run_fish_editor(
     )
     parsed: list[dict[str, str]] = []
     for attempt in range(3):
-        data = _chat_json(
+        data = chat_json(
             client,
             model,
             _fish_editor_system(),
@@ -813,7 +813,7 @@ def run_fish_editor(
 def run_fish_director(
     turns: list[ParsedTurn] | list[dict[str, str]],
     *,
-    model: str = DEFAULT_MOSS_DIRECTOR_MODEL,
+    model: str = DEFAULT_DIRECTOR_MODEL,
     client: OpenAI | None = None,
 ) -> tuple[list[ParsedTurn], list[str]]:
     """Rewrite as a Fish score (wording + in-place tags)."""
@@ -833,7 +833,7 @@ def run_fish_director(
     )
     parsed: list[dict[str, str]] = []
     for attempt in range(3):
-        data = _chat_json(
+        data = chat_json(
             client,
             model,
             _fish_writer_system(),
@@ -894,7 +894,7 @@ def build_fish_cues(
 def run_fish_travel_pipeline(
     turns: list[ParsedTurn],
     *,
-    model: str = DEFAULT_MOSS_DIRECTOR_MODEL,
+    model: str = DEFAULT_DIRECTOR_MODEL,
     skip_editor: bool = False,
 ) -> tuple[list[ParsedTurn], list[dict[str, Any]]]:
     """Fish editor (optional) → Fish writer → pronunciations → cues."""
