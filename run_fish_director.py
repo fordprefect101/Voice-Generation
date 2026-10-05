@@ -98,7 +98,7 @@ def main() -> None:
         f"voices/refs/*.wav voices/refs/ref_texts.json "
         f"$VM:~/fish-s2/inputs/ --zone=$ZONE\n"
         f"  # after VM assemble:\n"
-        f"  python run_mix_moss.py --episode episode.wav --cues {cues_path} --no-holds\n"
+        f"  python run_mix.py --episode episode.wav --cues {cues_path} --no-holds\n"
         f"  # or re-gap from clips:\n"
         f"  python run_fish_assemble.py --clips fish_turns --cues {cues_path}"
     )
