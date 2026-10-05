@@ -6,22 +6,22 @@
 male:
   parler_speaker: Rohit
   parler_description: >
-    Rohit's voice is warm, conversational, and clear with natural Hindi delivery,
-    early 30s travel-companion energy, medium pace, soft smile in the voice,
-    very close recording with almost no background noise.
+    Rohit speaks in a very expressive and animated tone, like chatting with a close friend,
+    with lots of pitch variation, at a slightly fast, lively pace. His voice is warm.
+    Very clear audio, recorded very close up, with no background noise.
   ref_sample: >
-    यह जगह सच में अलग लगती है। चोखी धानी में रुकने का मन इसलिए करता है।
-    चलो, आराम से दिखाता हूँ — बिल्कुल अपनी रफ़्तार से।
+    अरे वाह, आ गए हम! ये है चोखी ढाणी। पता है, यहाँ की सबसे मज़ेदार बात क्या है?
+    शाम होते ही पूरा गाँव जगमगा उठता है! चलो, आराम से घूमते हैं… कोई जल्दी नहीं।
 
 female:
   parler_speaker: Divya
   parler_description: >
-    Divya's voice is warm, curious, and expressive with natural Hindi delivery,
-    early 30s, easy conversational pace, natural smile, light lift on questions,
-    very close recording with almost no background noise.
+    Divya speaks in a very expressive and animated tone, curious and delighted,
+    with lots of pitch variation and a rising pitch on questions, at a slightly fast,
+    lively pace. Very clear audio, recorded very close up, with no background noise.
   ref_sample: >
-    रुको — ये सच में दिलचस्प है। तो ये सिर्फ दिखावा नहीं?
-    अच्छा, आगे कलबेलिया नर्तकियों के बारे में बताओ। मुझे सच में जानना है।
+    अरे, रुको रुको! ये तो सच में कमाल है। तो ये सिर्फ़ दिखावा नहीं है?
+    हम्म… अच्छा, अब कालबेलिया डांस के बारे में बताओ ना, मुझे सच में जानना है!
 
 # Bundled IndicF5 seed prompts (download from GitHub if missing). ref_text MUST match the wav.
 indicf5_seeds:

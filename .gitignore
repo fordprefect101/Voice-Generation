@@ -6,6 +6,8 @@
 # --- Python ---
 venv/
 .venv/
+.venv-hindi/
+.venv-indicf5/
 __pycache__/
 *.py[cod]
 *$py.class

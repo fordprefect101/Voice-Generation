@@ -1,0 +1,78 @@
+{
+  "parler_male": [
+    {
+      "take": 2,
+      "score": 0.6753291575285222,
+      "path": "voices/refs/hi/candidates/parler_male_take02.wav",
+      "auto_best": true
+    },
+    {
+      "take": 0,
+      "score": 0.6372191415635434,
+      "path": "voices/refs/hi/candidates/parler_male_take00.wav",
+      "auto_best": false
+    },
+    {
+      "take": 3,
+      "score": 0.6309820821637554,
+      "path": "voices/refs/hi/candidates/parler_male_take03.wav",
+      "auto_best": false
+    },
+    {
+      "take": 5,
+      "score": 0.6116423685851698,
+      "path": "voices/refs/hi/candidates/parler_male_take05.wav",
+      "auto_best": false
+    },
+    {
+      "take": 1,
+      "score": 0.5960852993617566,
+      "path": "voices/refs/hi/candidates/parler_male_take01.wav",
+      "auto_best": false
+    },
+    {
+      "take": 4,
+      "score": 0.5824309801793196,
+      "path": "voices/refs/hi/candidates/parler_male_take04.wav",
+      "auto_best": false
+    }
+  ],
+  "parler_female": [
+    {
+      "take": 2,
+      "score": 0.5798357870665284,
+      "path": "voices/refs/hi/candidates/parler_female_take02.wav",
+      "auto_best": true
+    },
+    {
+      "take": 1,
+      "score": 0.5430194702238974,
+      "path": "voices/refs/hi/candidates/parler_female_take01.wav",
+      "auto_best": false
+    },
+    {
+      "take": 4,
+      "score": 0.5279552718134201,
+      "path": "voices/refs/hi/candidates/parler_female_take04.wav",
+      "auto_best": false
+    },
+    {
+      "take": 5,
+      "score": 0.4863115848674785,
+      "path": "voices/refs/hi/candidates/parler_female_take05.wav",
+      "auto_best": false
+    },
+    {
+      "take": 3,
+      "score": 0.4649800248478144,
+      "path": "voices/refs/hi/candidates/parler_female_take03.wav",
+      "auto_best": false
+    },
+    {
+      "take": 0,
+      "score": 0.3891464912370235,
+      "path": "voices/refs/hi/candidates/parler_female_take00.wav",
+      "auto_best": false
+    }
+  ]
+}

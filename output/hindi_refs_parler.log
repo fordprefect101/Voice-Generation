@@ -1,0 +1,132 @@
+Flash attention 2 is not installed
+Loading ai4bharat/indic-parler-tts on mps...
+Config of the text_encoder: <class 'transformers.models.t5.modeling_t5.T5EncoderModel'> is overwritten by shared text_encoder config: T5Config {
+  "_name_or_path": "google/flan-t5-large",
+  "architectures": [
+    "T5ForConditionalGeneration"
+  ],
+  "classifier_dropout": 0.0,
+  "d_ff": 2816,
+  "d_kv": 64,
+  "d_model": 1024,
+  "decoder_start_token_id": 0,
+  "dense_act_fn": "gelu_new",
+  "dropout_rate": 0.1,
+  "eos_token_id": 1,
+  "feed_forward_proj": "gated-gelu",
+  "initializer_factor": 1.0,
+  "is_encoder_decoder": true,
+  "is_gated_act": true,
+  "layer_norm_epsilon": 1e-06,
+  "model_type": "t5",
+  "n_positions": 512,
+  "num_decoder_layers": 24,
+  "num_heads": 16,
+  "num_layers": 24,
+  "output_past": true,
+  "pad_token_id": 0,
+  "relative_attention_max_distance": 128,
+  "relative_attention_num_buckets": 32,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.46.1",
+  "use_cache": true,
+  "vocab_size": 32128
+}
+
+Config of the audio_encoder: <class 'transformers.models.dac.modeling_dac.DacModel'> is overwritten by shared audio_encoder config: DacConfig {
+  "_name_or_path": "ylacombe/dac_44khz",
+  "architectures": [
+    "DacModel"
+  ],
+  "codebook_dim": 8,
+  "codebook_loss_weight": 1.0,
+  "codebook_size": 1024,
+  "commitment_loss_weight": 0.25,
+  "decoder_hidden_size": 1536,
+  "downsampling_ratios": [
+    2,
+    4,
+    8,
+    8
+  ],
+  "encoder_hidden_size": 64,
+  "hidden_size": 1024,
+  "hop_length": 512,
+  "model_type": "dac",
+  "n_codebooks": 9,
+  "quantizer_dropout": 0.0,
+  "sampling_rate": 44100,
+  "torch_dtype": "float32",
+  "transformers_version": "4.46.1",
+  "upsampling_ratios": [
+    8,
+    8,
+    4,
+    2
+  ]
+}
+
+Config of the decoder: <class 'parler_tts.modeling_parler_tts.ParlerTTSForCausalLM'> is overwritten by shared decoder config: ParlerTTSDecoderConfig {
+  "_name_or_path": "/fsx/yoach/tmp/artefacts/parler-tts-mini-v2-empty/decoder",
+  "activation_dropout": 0.0,
+  "activation_function": "gelu",
+  "add_cross_attention": true,
+  "architectures": [
+    "ParlerTTSForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 1025,
+  "codebook_weights": null,
+  "cross_attention_implementation_strategy": null,
+  "delay_strategy": "delay",
+  "dropout": 0.1,
+  "eos_token_id": 1024,
+  "ffn_dim": 4096,
+  "hidden_size": 1024,
+  "initializer_factor": 0.02,
+  "is_decoder": true,
+  "layerdrop": 0.0,
+  "max_position_embeddings": 4096,
+  "model_type": "parler_tts_decoder",
+  "num_attention_heads": 16,
+  "num_codebooks": 9,
+  "num_cross_attention_key_value_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": 1024,
+  "rope_embeddings": false,
+  "rope_theta": 10000.0,
+  "scale_embedding": false,
+  "tie_word_embeddings": false,
+  "torch_dtype": "float32",
+  "transformers_version": "4.46.1",
+  "use_cache": true,
+  "use_fused_lm_heads": true,
+  "vocab_size": 1088
+}
+
+
+=== male (Rohit's voice is warm, conversational, and clear with natura...) ===
+Text: यह जगह सच में अलग लगती है। चोखी धानी में रुकने का मन इसलिए करता है। चलो, आराम से दिखाता हूँ — बिल्कुल अपनी रफ़्तार से।
+`prompt_attention_mask` is specified but `attention_mask` is not. A full `attention_mask` will be created. Make sure this is the intended behaviour.
+  take 00: score=0.622, mean_f0=135Hz (10.4s) -> parler_male_take00.wav
+  take 01: score=0.638, mean_f0=137Hz (10.3s) -> parler_male_take01.wav
+  take 02: score=0.580, mean_f0=142Hz (10.1s) -> parler_male_take02.wav
+  take 03: score=0.592, mean_f0=138Hz (10.0s) -> parler_male_take03.wav
+  take 04: score=0.645, mean_f0=142Hz (9.8s) -> parler_male_take04.wav
+  take 05: score=0.616, mean_f0=146Hz (10.4s) -> parler_male_take05.wav
+  AUTO-BEST take 04 (score=0.645) -> voices/refs/hi/male_ref.wav
+
+=== female (Divya's voice is warm, curious, and expressive with natural ...) ===
+Text: रुको — ये सच में दिलचस्प है। तो ये सिर्फ दिखावा नहीं? अच्छा, आगे कलबेलिया नर्तकियों के बारे में बताओ। मुझे सच में जानना ...
+  take 00: score=0.451, mean_f0=163Hz (10.8s) -> parler_female_take00.wav
+  take 01: score=0.598, mean_f0=188Hz (10.3s) -> parler_female_take01.wav
+  take 02: score=0.591, mean_f0=171Hz (10.0s) -> parler_female_take02.wav
+  take 03: score=0.526, mean_f0=159Hz (10.4s) -> parler_female_take03.wav
+  take 04: score=0.446, mean_f0=154Hz (11.5s) -> parler_female_take04.wav
+  take 05: score=0.443, mean_f0=149Hz (12.3s) -> parler_female_take05.wav
+  AUTO-BEST take 01 (score=0.598) -> voices/refs/hi/female_ref.wav
+
+Wrote voices/refs/hi/ref_texts.json
+Fish VM: gcloud compute scp voices/refs/hi/*.wav voices/refs/hi/ref_texts.json $VM:~/fish-s2/inputs/ --zone=$ZONE
+exit=0
